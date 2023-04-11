@@ -1,0 +1,2 @@
+SELECT * FROM categories
+LIMIT 3 OFFSET 2;
