@@ -12,7 +12,7 @@ const DEFAULT_IMAGE = 'images/default-image.jpg'
 <div class="container">
     <h1>Продукты</h1>
     <div class="col py-2">
-        <a href="products/add">Добавить новый продукт</a>
+        <a href="/view/add/add.php">Добавить новый продукт</a>
     </div>
     <div class="row">
         <?php if (!empty($products)): ?>
