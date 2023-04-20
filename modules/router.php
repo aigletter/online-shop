@@ -15,12 +15,12 @@ function route()
 
     if (file_exists($controllerFileName)) {
         include $controllerFileName;
-        if ($segments) {
+        if (!empty($segments)) {
             $actionName = array_shift($segments);
         }
 
         if (function_exists($actionName)) {
-            $parameters = prepareParams($segments);
+            $parameters = prepareParams($segments ?? []);
             $actionName($parameters);
         } else {
             http_response_code(404);

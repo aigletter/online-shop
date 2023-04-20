@@ -4,7 +4,8 @@ function getConnection()
 {
     static $connection;
     if ($connection === null) {
-        $connection = mysqli_connect('localhost', 'root', '1q2w3e', 'tmp');
+        $config = parse_ini_file(__DIR__ . '/../config/db.ini');
+        $connection = mysqli_connect($config['host'], $config['username'], $config['password'], $config['database']);
     }
     return $connection;
 }

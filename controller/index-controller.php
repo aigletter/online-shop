@@ -2,5 +2,5 @@
 
 function index()
 {
-    echo 'Главная страница';
+    include __DIR__ . '/../view/main-page.php';
 }
