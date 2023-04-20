@@ -19,10 +19,13 @@ function getSingleProduct($id)
 {
     $connection = getConnection();
     $result = mysqli_query($connection, "
-        SELECT products.*, images.uri as image FROM products WHERE products.id = '$id'
+        SELECT products.*, images.uri as image, categories.name as category_name FROM products 
         LEFT JOIN images
         ON images.product_id = products.id
         AND images.is_main = 1
+        LEFT JOIN categories
+        ON categories.id = products.category_id
+        WHERE products.id = $id
     ");
 
     return mysqli_fetch_array($result, MYSQLI_ASSOC);
