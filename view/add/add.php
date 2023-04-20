@@ -21,7 +21,7 @@
             </div>
             <div class="mb-3">
                 <label for="productImage" class="form-label">Product Image</label>
-                <input type="file" id="productImage" class="form-control" name="productImage">
+                <input type="file" id="productImage" class="form-control" name="image" accept="image/*">
             </div>
             <div class="mb-3">
                 <label for="catId" class="form-label">Category:</label>

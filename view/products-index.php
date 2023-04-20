@@ -2,7 +2,7 @@
 /**
  * @var array $users
  */
-const DEFAULT_IMAGE = 'images/default-image.jpg'
+const DEFAULT_IMAGE = 'images/default.png'
 ?>
 
 <?php include 'partials/head.php' ?>
@@ -18,7 +18,7 @@ const DEFAULT_IMAGE = 'images/default-image.jpg'
         <?php if (!empty($products)): ?>
             <?php foreach ($products as $product): ?>
                 <div class="card" style="width: 18rem; margin: 10px;">
-                    <img src="<?php echo $product['image'] ?? DEFAULT_IMAGE ?>" class="card-img-top"
+                    <img src="<?php echo $product['image'] ?? DEFAULT_IMAGE?>" class="card-img-top"
                          alt="<?php echo $product['name'] ?>">
                     <div class="card-body">
                         <h5 class="card-title">
