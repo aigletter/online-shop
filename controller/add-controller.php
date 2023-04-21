@@ -7,7 +7,7 @@ function clearData($val = ""): string
     return htmlspecialchars($val);
 }
 
-const UPLOAD_DIR = __DIR__ . '/../images/';
+const UPLOAD_DIR = '../images/';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -39,11 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    require_once __DIR__ . '/../model/add-product-model.php';
-    $success = addProducts($productTitle, $productDescription, $productPrice, $catId, $imagePaths);
+    require_once __DIR__ . '/../model/add-model.php';
+    $success = addProduct($productTitle, $productDescription, $productPrice, $catId, $imagePaths);
 
     if ($success) {
-        echo "successfully add new product";
+        header('Location:/products');
     } else {
         echo "error";
     }
