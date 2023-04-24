@@ -73,3 +73,13 @@ function saveProduct()
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     saveProduct();
 }
+
+
+function details($parameters)
+{
+    require_once __DIR__ . '/../model/products-model.php';
+
+    $product = getSingleProduct($parameters['id']);
+
+    include __DIR__ . '/../view/product-details.php';
+}
