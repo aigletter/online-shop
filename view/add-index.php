@@ -7,7 +7,7 @@ include 'partials/head.php' ?>
         <h1>
             Add new product
         </h1>
-        <form method="post" enctype="multipart/form-data" action="/controller/add-controller.php">
+        <form method="post" enctype="multipart/form-data" action="/controller/products-controller.php">
             <div class="mb-3">
                 <label for="productTitle" class="form-label">Product Title</label>
                 <input type="text" class="form-control" id="productTitle" name="productTitle">
