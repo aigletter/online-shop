@@ -2,17 +2,17 @@
 /**
  * @var array $users
  */
-const DEFAULT_IMAGE = 'images/default.png'
+const DEFAULT_IMAGE = 'images/default-image.jpg'
 ?>
 
-<?php include 'partials/head.php' ?>
+<?php include __DIR__ . '/partials/head.php' ?>
 
-<?php include 'partials/menu.php' ?>
+<?php include __DIR__ . '/partials/menu.php' ?>
 
 <div class="container">
     <h1>Продукты</h1>
     <div class="col py-2">
-        <a href="/view/add/add.php">Добавить новый продукт</a>
+        <a href="products/add">Добавить новый продукт</a>
     </div>
     <div class="row">
         <?php if (!empty($products)): ?>
@@ -36,4 +36,4 @@ const DEFAULT_IMAGE = 'images/default.png'
     </div>
 </div>
 
-<?php include 'partials/footer.php';
+<?php include __DIR__ . '/partials/footer.php';

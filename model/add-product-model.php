@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/db.php';
 
-function addProducts($productTitle, $productDescription, $productPrice, $catId, $imagePaths)
+function addProduct($productTitle, $productDescription, $productPrice, $catId, $imagePaths)
 {
     $connection = getConnection();
 
@@ -40,16 +40,4 @@ function addProducts($productTitle, $productDescription, $productPrice, $catId, 
     mysqli_commit($connection);
     mysqli_close($connection);
     return $productId;
-}
-
-function getCategories()
-{
-    $connection = getConnection();
-    $query = "SELECT id, name, description FROM categories";
-
-    $result = mysqli_query($connection, $query);
-
-    $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    return $categories;
 }
