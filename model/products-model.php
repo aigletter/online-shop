@@ -15,7 +15,7 @@ function getProducts()
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
-function getSingleProduct($id)
+function getProduct($id)
 {
     $connection = getConnection();
     $result = mysqli_query($connection, "
@@ -29,4 +29,16 @@ function getSingleProduct($id)
     ");
 
     return mysqli_fetch_array($result, MYSQLI_ASSOC);
+}
+
+function updateProduct($id, $name, $description, $price, $category)
+{
+    $connection = getConnection();
+    $result = mysqli_query($connection, "
+        UPDATE products p
+        SET p.name = '$name', p.description = '$description', p.price = $price, p.category_id = $category
+        WHERE p.id=$id
+    ");
+
+    return $result;
 }
