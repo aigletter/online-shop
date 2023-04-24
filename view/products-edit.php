@@ -5,21 +5,22 @@
  */
 const DEFAULT_IMAGE = 'images/default-image.jpg';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
-
-    $id = $_POST['id'] ?? '';
-    $name = $_POST['name'] ?? '';
-    $description = $_POST['description'] ?? '';
-    $price = $_POST['price'] ?? '';
-    $category = $_POST['category'] ?? '';
-
-    $res = updateProduct($id, $name, $description, $price, $category);
-
-    if ($res){
-        header("Location: http://online-shop/products/view/id/$id");
-    }
-
-}
+//if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
+//
+//    $id = $_POST['id'] ?? '';
+//    $name = $_POST['name'] ?? '';
+//    $description = $_POST['description'] ?? '';
+//    $price = $_POST['price'] ?? '';
+//    $category = $_POST['category'] ?? '';
+//
+//    $res = updateProduct($id, $name, $description, $price, $category);
+//
+//    if ($res){
+//        header("Location: http://online-shop/products/view/id/$id");
+//        exit();
+//    }
+//
+//}
 ?>
 
 <?php include 'partials/head.php' ?>

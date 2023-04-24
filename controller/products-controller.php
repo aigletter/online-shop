@@ -12,6 +12,7 @@ function index()
 function view()
 {
     require_once __DIR__ . '/../model/products-model.php';
+    require_once __DIR__ . '/../model/categories-model.php';
 
     $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     $segments = explode('/', $path);
@@ -25,14 +26,35 @@ function view()
 
 function edit()
 {
-    require_once __DIR__ . '/../model/products-model.php';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
 
-    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-    $segments = explode('/', $path);
-    $id = end($segments);
+        require_once __DIR__ . '/../model/products-model.php';
+        require_once __DIR__ . '/../model/categories-model.php';
 
-    $product = getProduct($id)[0];
-    $categories = getCategories();
+        $id = $_POST['id'] ?? '';
+        $name = $_POST['name'] ?? '';
+        $description = $_POST['description'] ?? '';
+        $price = $_POST['price'] ?? '';
+        $category = $_POST['category'] ?? '';
 
-    include __DIR__ . '/../view/products-edit.php';
+        $res = updateProduct($id, $name, $description, $price, $category);
+
+        if ($res){
+            header("Location: http://online-shop/products/view/id/$id");
+            exit();
+        }
+
+    } else {
+        require_once __DIR__ . '/../model/products-model.php';
+        require_once __DIR__ . '/../model/categories-model.php';
+
+        $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $segments = explode('/', $path);
+        $id = end($segments);
+
+        $product = getProduct($id)[0];
+        $categories = getCategories();
+
+        include __DIR__ . '/../view/products-edit.php';
+    }
 }
