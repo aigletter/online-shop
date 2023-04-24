@@ -17,7 +17,7 @@ const DEFAULT_IMAGE = '/images/default-image.png'
     </div>
     <div style="width: 50%; margin-left: 2%; display: inline-block; ">
         <div>
-            <h1><?php echo $product['product_name']?></h1>
+            <h1><?php echo $product['name'] ?? $product['product_name'] ?></h1>
         </div>
         <div>
             <h3 style="color: gray"><?php echo $product['price'] ?> uah</h3>

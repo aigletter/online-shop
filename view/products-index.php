@@ -12,7 +12,7 @@ const DEFAULT_IMAGE = 'images/default-image.jpg'
 <div class="container">
     <h1>Продукты</h1>
     <div class="col py-2">
-        <a href="products/add">Добавить новый продукт</a>
+        <a href="/products/add">Добавить новый продукт</a>
     </div>
     <div class="row">
         <?php if (!empty($products)): ?>
@@ -22,8 +22,9 @@ const DEFAULT_IMAGE = 'images/default-image.jpg'
                          alt="<?php echo $product['name'] ?>">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="/products/view/id/<?php echo $product['id'] ?>"><?php echo $product['name'] ?></a>
+                            <a href="/products/details/id/<?php echo $product['id'] ?>"><?php echo $product['name'] ?></a>
                         </h5>
+                        <p class="link-danger">Цена: <?php echo $product['price'] ?> грн.</p>
                         <p class="card-text">
                             <?php echo $product['description'] ?>
                         </p>
