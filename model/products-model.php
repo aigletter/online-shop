@@ -14,3 +14,51 @@ function getProducts()
 
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
+
+function getCategories()
+{
+    $connection = getConnection();
+    $result = mysqli_query($connection, "
+        SELECT * FROM categories
+    ");
+
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+function getCategory($id)
+{
+    $connection = getConnection();
+    $result = mysqli_query($connection, "
+        SELECT c.name, c.description FROM categories c
+        LEFT JOIN products p on c.id = p.category_id
+        WHERE p.id=$id
+    ");
+
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+function getProduct($id)
+{
+    $connection = getConnection();
+    $result = mysqli_query($connection, "
+        SELECT products.*, images.uri as image FROM products
+        LEFT JOIN images
+        ON images.product_id = products.id
+        AND images.is_main = 1
+        WHERE products.id=$id
+    ");
+
+    return mysqli_fetch_all($result);
+}
+
+function updateProduct($id, $name, $description, $price, $category)
+{
+    $connection = getConnection();
+    $result = mysqli_query($connection, "
+        UPDATE products p
+        SET p.name = '$name', p.description = '$description', p.price = $price, p.category_id = $category
+        WHERE p.id=$id
+    ");
+
+    return $result;
+}
