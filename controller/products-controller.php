@@ -28,48 +28,52 @@ function clearData($val = ""): string
     return htmlspecialchars($val);
 }
 
-const UPLOAD_DIR = '../images/';
 
-function saveProduct()
+function save()
 {
-    $productTitle = clearData($_POST['productTitle']);
-    $productDescription = clearData($_POST['productDescription']);
-    $productPrice = clearData($_POST['productPrice']);
-    $catId = clearData($_POST['catId']);
-    $productImage = $_FILES['image'];
-    $imagePaths = '';
+    $uploadDir = __DIR__ . '/../images/';
 
-    $tmp_name = $_FILES['image']['tmp_name'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    if (is_uploaded_file($productImage['tmp_name'])) {
-        if ($productImage['size'] > 1000000) {
-        } else {
-            $allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-            if (!in_array($productImage['type'], $allowedTypes)) {
-                echo "File type not allowed.";
+        $productTitle = clearData($_POST['productTitle']);
+        $productDescription = clearData($_POST['productDescription']);
+        $productPrice = clearData($_POST['productPrice']);
+        $catId = clearData($_POST['catId']);
+        $productImage = $_FILES['image'];
+        $imagePaths = '';
+
+        $tmp_name = $_FILES['image']['tmp_name'];
+
+        if (is_uploaded_file($productImage['tmp_name'])) {
+            if ($productImage['size'] > 1000000) {
             } else {
-                if (!file_exists(UPLOAD_DIR)) {
-                    mkdir(UPLOAD_DIR);
+                $allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+                if (!in_array($productImage['type'], $allowedTypes)) {
+                    echo "File type not allowed.";
+                } else {
+                    if (!file_exists($uploadDir)) {
+                        mkdir($uploadDir);
+                    }
+                    $filepath = uniqid() . '-' . basename($productImage['name']);
+                    $destination = $uploadDir . $filepath;
+                    $fileName = $productImage['tmp_name'];
+                    move_uploaded_file($fileName, $destination);
+                    $imagePaths = '/images/' . $filepath;
                 }
-                $filepath = uniqid() . '-' . basename($productImage['name']);
-                $destination = UPLOAD_DIR . $filepath;
-                $fileName = $productImage['tmp_name'];
-                move_uploaded_file($fileName, $destination);
-                $imagePaths = '/images/' . $filepath;
             }
         }
-    }
 
-    require_once __DIR__ . '/../model/add-product-model.php';
-    $success = addProduct($productTitle, $productDescription, $productPrice, $catId, $imagePaths);
+        require_once __DIR__ . '/../model/add-product-model.php';
+        $success = addProduct($productTitle, $productDescription, $productPrice, $catId, $imagePaths);
 
-    if ($success) {
-        header('Location:/products');
+        if ($success) {
+            header('Location:/products');
+            exit();
+        } else {
+            echo "error";
+        }
+
     } else {
-        echo "error";
+        include __DIR__ . '/../view/add-index.php';
     }
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    saveProduct();
 }
