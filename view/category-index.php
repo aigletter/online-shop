@@ -10,7 +10,7 @@
             <ul>
               <?php foreach ($products as $product): ?>
                 <li>
-                   <p><a href="/products/view/id/" style="color: black " ><?php echo $product['name'] ?></a></p>
+                   <p><a href="/products/details/id/<?php echo $product['id'] ?>" style="color: black " ><?php echo $product['name'] ?></a></p>
                 </li>
               <?php endforeach;?>
             </ul>

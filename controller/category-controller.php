@@ -7,8 +7,8 @@ function view(array $params): void
     $category_id = $params['id'];
 
 // Отримуємо дані про категорію та продукти, що належать до неї
-    $category = get_category_by_id($category_id);
-    $products = get_products_by_category_id($category_id);
+    $category = getCategoryById($category_id);
+    $products = getProductsByCategoryId($category_id);
 
     include __DIR__ . '/../view/category-index.php';
 }

@@ -34,10 +34,10 @@ const DEFAULT_IMAGE = 'images/default-image.jpg';
         </div>
         <div class="row">
             <div class="container">
-                <form action="/products/edit/<?php echo $product[0];?>" method="POST" enctype="multipart/form-data">
+                <form action="/products/edit/<?php echo $product['id'];?>" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <div>
-                            <input type="hidden" id="id" name="id" value="<?php echo $product[0] ?>" >
+                            <input type="hidden" id="id" name="id" value="<?php echo $product['id'] ?>" >
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,7 +45,8 @@ const DEFAULT_IMAGE = 'images/default-image.jpg';
                             <label for="name">Name</label>
                         </div>
                         <div>
-                            <input class="form-control" type="text" id="name" name="name" placeholder="Your name.." value="<?php echo $product[1] ?>" required>
+                            <input class="form-control" type="text" id="name" name="name" placeholder="Your name.."
+                                   value="<?php echo $product['name'] ?>" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,7 +54,8 @@ const DEFAULT_IMAGE = 'images/default-image.jpg';
                             <label for="description">Description</label>
                         </div>
                         <div>
-                            <input class="form-control" type="text" id="description" name="description" placeholder="Your description.." value="<?php echo $product[2] ?>" required>
+                            <input class="form-control" type="text" id="description" name="description"
+                                   placeholder="Your description.." value="<?php echo $product['description'] ?>" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -61,7 +63,8 @@ const DEFAULT_IMAGE = 'images/default-image.jpg';
                             <label for="description">Price</label>
                         </div>
                         <div>
-                            <input class="form-control" type="text" id="price" name="price" placeholder="Your price..." value="<?php echo $product[3] ?>" >
+                            <input class="form-control" type="text" id="price" name="price" placeholder="Your price..."
+                                   value="<?php echo $product['price'] ?>" >
                         </div>
                     </div>
                     <div class="form-group">
@@ -71,12 +74,14 @@ const DEFAULT_IMAGE = 'images/default-image.jpg';
                         <div>
                             <select id="category" name="category" class="form-control">
                                 <?php foreach ($categories as $category): ?>
-                                    <option value="<?php echo $category['id'] ?>" <?php echo ($category['id'] == $product[4]) ? 'selected' : '' ?> ><?php echo $category['name']; ?></option>
+                                    <option value="<?php echo $category['id'] ?>" <?php echo ($category['id'] == $product['category_id']) ? 'selected' : '' ?>>
+                                        <?php echo $category['name']; ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
-                    <div class="btn btn-primary">
+                    <div class="btn btn-primary my-4">
                         <input type="submit" name="submit" value="Submit">
                     </div>
                 </form>

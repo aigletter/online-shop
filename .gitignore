@@ -1,2 +1,6 @@
 .idea
 config/db.ini
+images/*
+!images/default.jpg
+!images/default-image.jpg
+!images/default-image.png
