@@ -3,10 +3,10 @@
 <?php include 'partials/menu.php' ?>
 <div class="container">
     <?php if (!empty($category)): ?>
-        <h1>Категорія "<?php echo $category['name']; ?>"</h1>
+        <h1>Категория "<?php echo $category['name']; ?>"</h1>
         <p><?php echo $category['description']; ?></p>
         <?php if (!empty($products)): ?>
-            <h2>Товари, що належать до категорії "<?php echo $category['name']; ?>"</h2>
+            <h2>Товары, относящиеся к категории "<?php echo $category['name']; ?>"</h2>
             <ul>
               <?php foreach ($products as $product): ?>
                 <li>
@@ -15,10 +15,10 @@
               <?php endforeach;?>
             </ul>
         <?php else: ?>
-            Немає продуктів в даній категорії
+            Нет продуктов в данной категории
         <?php endif; ?>
     <?php else: ?>
-       Відсутня дана категорія
+        Отсутствует данная категория
     <?php endif; ?>
 </div>
 
